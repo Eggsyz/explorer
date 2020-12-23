@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.itkezhan.blockchain.explorer.modules.explorer.mapper.ChannelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Channel">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="block_count" property="blockCount" />
+        <result column="tx_count" property="txCount" />
+        <result column="create_time" property="createTime" />
+        <result column="channel_genesis_hash" property="channelGenesisHash" />
+        <result column="channel_hash" property="channelHash" />
+        <result column="channel_config" property="channelConfig" />
+        <result column="channel_block" property="channelBlock" />
+        <result column="channel_tx" property="channelTx" />
+        <result column="channel_version" property="channelVersion" />
+        <result column="network_name" property="networkName" />
+    </resultMap>
+
+</mapper>

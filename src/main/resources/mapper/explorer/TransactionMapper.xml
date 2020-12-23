@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.itkezhan.blockchain.explorer.modules.explorer.mapper.TransactionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Transaction">
+        <id column="id" property="id" />
+        <result column="block_id" property="blockId" />
+        <result column="tx_hash" property="txHash" />
+        <result column="create_time" property="createTime" />
+        <result column="chaincode_name" property="chaincodeName" />
+        <result column="status" property="status" />
+        <result column="creator_msp_id" property="creatorMspId" />
+        <result column="endorser_msp_id" property="endorserMspId" />
+        <result column="chaincode_id" property="chaincodeId" />
+        <result column="type" property="type" />
+        <result column="read_set" property="readSet" />
+        <result column="write_set" property="writeSet" />
+        <result column="channel_genesis_hash" property="channelGenesisHash" />
+        <result column="validation_code" property="validationCode" />
+        <result column="envelope_signature" property="envelopeSignature" />
+        <result column="payload_extension" property="payloadExtension" />
+        <result column="creator_id_bytes" property="creatorIdBytes" />
+        <result column="creator_nonce" property="creatorNonce" />
+        <result column="chaincode_proposal_input" property="chaincodeProposalInput" />
+        <result column="tx_response" property="txResponse" />
+        <result column="payload_proposal_hash" property="payloadProposalHash" />
+        <result column="endorser_id_bytes" property="endorserIdBytes" />
+        <result column="endorser_signature" property="endorserSignature" />
+        <result column="network_name" property="networkName" />
+    </resultMap>
+
+</mapper>

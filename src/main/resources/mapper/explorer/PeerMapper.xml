@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.itkezhan.blockchain.explorer.modules.explorer.mapper.PeerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Peer">
+        <id column="id" property="id" />
+        <result column="org" property="org" />
+        <result column="channel_genesis_hash" property="channelGenesisHash" />
+        <result column="msp_id" property="mspId" />
+        <result column="requests" property="requests" />
+        <result column="events" property="events" />
+        <result column="server_hostname" property="serverHostname" />
+        <result column="create_time" property="createTime" />
+        <result column="peer_type" property="peerType" />
+        <result column="network_name" property="networkName" />
+    </resultMap>
+
+</mapper>
