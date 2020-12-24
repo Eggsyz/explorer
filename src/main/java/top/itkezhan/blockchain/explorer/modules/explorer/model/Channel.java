@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author eggsy
- * @since 2020-12-23
+ * @since 2020-12-24
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

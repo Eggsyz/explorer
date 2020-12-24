@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author eggsy
- * @since 2020-12-23
+ * @since 2020-12-24
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -26,13 +26,13 @@ public class PeerRefChaincode implements Serializable {
 
     private Integer id;
 
-    private String peerId;
+    private Integer peerId;
 
-    private String chaincodeId;
+    private Integer chaincodeId;
 
     private String chaincodeVersion;
 
-    private String channelId;
+    private Integer channelId;
 
     private Date createTime;
 

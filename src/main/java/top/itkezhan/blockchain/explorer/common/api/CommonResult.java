@@ -1,8 +1,7 @@
-package com.macro.mall.tiny.common.api;
+package top.itkezhan.blockchain.explorer.common.api;
 
 /**
  * 通用返回对象
- * Created by macro on 2019/4/19.
  */
 public class CommonResult<T> {
     private long code;
@@ -41,7 +40,7 @@ public class CommonResult<T> {
      * 失败返回结果
      * @param errorCode 错误码
      */
-    public static <T> CommonResult<T> failed(IErrorCode errorCode) {
+    public static <T> CommonResult<T> failed(ResultCode errorCode) {
         return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
@@ -50,7 +49,7 @@ public class CommonResult<T> {
      * @param errorCode 错误码
      * @param message 错误信息
      */
-    public static <T> CommonResult<T> failed(IErrorCode errorCode,String message) {
+    public static <T> CommonResult<T> failed(ResultCode errorCode, String message) {
         return new CommonResult<T>(errorCode.getCode(), message, null);
     }
 

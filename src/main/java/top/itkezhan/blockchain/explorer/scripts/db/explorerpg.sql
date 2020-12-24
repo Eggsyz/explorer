@@ -42,10 +42,10 @@ DROP TABLE IF EXISTS peer_ref_chaincode;
 CREATE TABLE peer_ref_chaincode
 (
     id SERIAL PRIMARY KEY,
-    peer_id varchar(256) DEFAULT NULL,
-    chaincode_id varchar(255) DEFAULT NULL,
+    peer_id integer DEFAULT NULL,
+    chaincode_id integer DEFAULT NULL,
     chaincode_version varchar(255) DEFAULT NULL,
-    channel_id character varying(256) DEFAULT NULL,
+    channel_id integer DEFAULT NULL,
     create_time Timestamp DEFAULT NULL,
     network_name varchar(255)
 );
@@ -83,7 +83,6 @@ DROP TABLE IF EXISTS peer;
 CREATE TABLE peer
 (
     id SERIAL PRIMARY KEY,
-    org integer DEFAULT NULL,
     channel_genesis_hash character varying(256) DEFAULT NULL,
     msp_id varchar(256) DEFAULT NULL,
     requests varchar(256) DEFAULT NULL,
@@ -102,8 +101,8 @@ CREATE TABLE peer_ref_channel
 (
     id SERIAL PRIMARY KEY,
     create_time Timestamp DEFAULT NULL,
-    peer_id varchar(256),
-    channel_id character varying(256),
+    peer_id integer DEFAULT NULL,
+    channel_id integer DEFAULT NULL,
     peer_type character varying(256) DEFAULT NULL,
     network_name varchar(255)
 );
@@ -161,41 +160,36 @@ CREATE TABLE transaction
 
 DROP INDEX IF EXISTS blocks_blocknum_idx;
 CREATE INDEX ON Block
-(block_num);
+(block_num,network_name);
 
 DROP INDEX IF EXISTS blocks_channel_genesis_hash_idx;
 CREATE INDEX ON Block
-(channel_genesis_hash);
+(channel_genesis_hash,network_name);
 
 DROP INDEX IF EXISTS blocks_createdt_idx;
 CREATE INDEX ON Block
-(create_time);
+(create_time,network_name);
 
 DROP INDEX IF EXISTS transaction_txhash_idx;
 CREATE INDEX ON Transaction
-(tx_hash);
+(tx_hash,network_name);
 
 DROP INDEX IF EXISTS transaction_channel_genesis_hash_idx;
 CREATE INDEX ON Transaction
-(channel_genesis_hash);
+(channel_genesis_hash,network_name);
 
 DROP INDEX IF EXISTS transaction_createdt_idx;
 CREATE INDEX ON Transaction
-(create_time);
+(create_time,network_name);
 
 DROP INDEX IF EXISTS transaction_blockid_idx;
 CREATE INDEX ON Transaction
 (block_id);
 
-DROP INDEX IF EXISTS transaction_chaincode_proposal_input_idx;
-CREATE INDEX ON Transaction
-((md5
-(chaincode_proposal_input)));
-
 DROP INDEX IF EXISTS channel_channel_genesis_hash_idx;
 CREATE INDEX ON channel
-(channel_genesis_hash);
+(channel_genesis_hash,network_name);
 
 DROP INDEX IF EXISTS channel_channel_hash_idx;
 CREATE INDEX ON channel
-(channel_hash);
+(channel_hash,network_name);

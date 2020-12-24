@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author eggsy
- * @since 2020-12-23
+ * @since 2020-12-24
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -28,9 +28,9 @@ public class PeerRefChannel implements Serializable {
 
     private Date createTime;
 
-    private String peerId;
+    private Integer peerId;
 
-    private String channelId;
+    private Integer channelId;
 
     private String peerType;
 

@@ -5,7 +5,6 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Peer">
         <id column="id" property="id" />
-        <result column="org" property="org" />
         <result column="channel_genesis_hash" property="channelGenesisHash" />
         <result column="msp_id" property="mspId" />
         <result column="requests" property="requests" />
