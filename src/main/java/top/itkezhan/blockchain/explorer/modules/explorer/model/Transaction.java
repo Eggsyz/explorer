@@ -48,7 +48,7 @@ public class Transaction implements Serializable {
 
     private String writeSet;
 
-    private String channelGenesisHash;
+    private String channelName;
 
     private String validationCode;
 

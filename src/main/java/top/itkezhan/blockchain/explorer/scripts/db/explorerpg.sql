@@ -1,4 +1,15 @@
 -- ----------------------------
+--  Table structure for `network`
+-- ----------------------------
+DROP TABLE IF EXISTS network;
+
+CREATE TABLE network
+(
+    id SERIAL PRIMARY KEY,
+    create_time Timestamp DEFAULT NULL,
+    network_name varchar(255)
+);
+-- ----------------------------
 --  Table structure for `blocks`
 -- ----------------------------
 DROP TABLE IF EXISTS block;
@@ -12,7 +23,7 @@ CREATE TABLE block
     tx_count integer DEFAULT NULL,
     create_time Timestamp DEFAULT NULL,
     current_block_hash character varying(256) DEFAULT NULL,
-    channel_genesis_hash character varying(256) DEFAULT NULL,
+    channel_name character varying(256) DEFAULT NULL,
     block_size integer DEFAULT NULL,
     network_name varchar(255)
 );
@@ -28,7 +39,7 @@ CREATE TABLE chaincode
     name character varying(255) DEFAULT NULL,
     version character varying(255) DEFAULT NULL,
     path character varying(255) DEFAULT NULL,
-    channel_genesis_hash character varying(256) DEFAULT NULL,
+    channel_name character varying(256) DEFAULT NULL,
     tx_count integer DEFAULT 0,
     create_time Timestamp DEFAULT NULL,
     network_name varchar(255)
@@ -83,7 +94,7 @@ DROP TABLE IF EXISTS peer;
 CREATE TABLE peer
 (
     id SERIAL PRIMARY KEY,
-    channel_genesis_hash character varying(256) DEFAULT NULL,
+    channel_name character varying(256) DEFAULT NULL,
     msp_id varchar(256) DEFAULT NULL,
     requests varchar(256) DEFAULT NULL,
     events varchar(256) DEFAULT NULL,
@@ -143,7 +154,7 @@ CREATE TABLE transaction
     type character varying(256) DEFAULT NULL,
     read_set json default NULL,
     write_set json default NULL,
-    channel_genesis_hash character varying(256) DEFAULT NULL,
+    channel_name character varying(256) DEFAULT NULL,
     validation_code character varying(255) DEFAULT NULL,
     envelope_signature character varying DEFAULT NULL,
     payload_extension character varying DEFAULT NULL,
@@ -164,7 +175,7 @@ CREATE INDEX ON Block
 
 DROP INDEX IF EXISTS blocks_channel_genesis_hash_idx;
 CREATE INDEX ON Block
-(channel_genesis_hash,network_name);
+(channel_name,network_name);
 
 DROP INDEX IF EXISTS blocks_createdt_idx;
 CREATE INDEX ON Block
@@ -176,7 +187,7 @@ CREATE INDEX ON Transaction
 
 DROP INDEX IF EXISTS transaction_channel_genesis_hash_idx;
 CREATE INDEX ON Transaction
-(channel_genesis_hash,network_name);
+(channel_name,network_name);
 
 DROP INDEX IF EXISTS transaction_createdt_idx;
 CREATE INDEX ON Transaction
@@ -188,7 +199,7 @@ CREATE INDEX ON Transaction
 
 DROP INDEX IF EXISTS channel_channel_genesis_hash_idx;
 CREATE INDEX ON channel
-(channel_genesis_hash,network_name);
+(name,network_name);
 
 DROP INDEX IF EXISTS channel_channel_hash_idx;
 CREATE INDEX ON channel

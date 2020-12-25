@@ -32,7 +32,7 @@ public class Chaincode implements Serializable {
 
     private String path;
 
-    private String channelGenesisHash;
+    private String channelName;
 
     private Integer txCount;
 

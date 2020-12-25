@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("channel")
-@ApiModel(value="Channel对象", description="")
+@ApiModel(value="Channel对象", description="通道表")
 public class Channel implements Serializable {
 
     private static final long serialVersionUID=1L;

@@ -14,31 +14,19 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author eggsy
- * @since 2020-12-24
+ * @since 2020-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("peer")
-@ApiModel(value="Peer对象", description="")
-public class Peer implements Serializable {
+@TableName("network")
+@ApiModel(value="Network对象", description="区块链网络表")
+public class Network implements Serializable {
 
     private static final long serialVersionUID=1L;
 
     private Integer id;
 
-    private String channelName;
-
-    private String mspId;
-
-    private String requests;
-
-    private String events;
-
-    private String serverHostname;
-
     private Date createTime;
-
-    private String peerType;
 
     private String networkName;
 

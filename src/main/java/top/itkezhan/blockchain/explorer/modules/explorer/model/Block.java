@@ -38,11 +38,10 @@ public class Block implements Serializable {
 
     private String currentBlockHash;
 
-    private String channelGenesisHash;
+    private String channelName;
 
     private Integer blockSize;
 
     private String networkName;
-
 
 }
