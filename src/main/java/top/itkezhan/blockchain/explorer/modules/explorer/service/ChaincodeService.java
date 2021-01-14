@@ -20,4 +20,10 @@ public interface ChaincodeService extends IService<Chaincode> {
      */
     List<Chaincode> getChaincodeList(String networkName,String channelName);
 
+
+    /**
+     * 根据链码名查询链码详情
+     */
+    Chaincode getChaincodeByName(String networkName,String channelName,String chaincodeName);
+
 }

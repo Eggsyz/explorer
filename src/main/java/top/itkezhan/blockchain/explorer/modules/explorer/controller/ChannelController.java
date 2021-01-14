@@ -49,5 +49,7 @@ public class ChannelController {
         Channel channel = channelService.getChannelInfo(networkName, channelName);
         return CommonResult.success(channel);
     }
+
+    // TODO 查询通道当前状态，计算TPS之类的
 }
 

@@ -4,30 +4,74 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Transaction">
-        <id column="id" property="id" />
-        <result column="block_id" property="blockId" />
-        <result column="tx_hash" property="txHash" />
-        <result column="create_time" property="createTime" />
-        <result column="chaincode_name" property="chaincodeName" />
-        <result column="status" property="status" />
-        <result column="creator_msp_id" property="creatorMspId" />
-        <result column="endorser_msp_id" property="endorserMspId" />
-        <result column="chaincode_id" property="chaincodeId" />
-        <result column="type" property="type" />
-        <result column="read_set" property="readSet" />
-        <result column="write_set" property="writeSet" />
-        <result column="channel_genesis_hash" property="channelGenesisHash" />
-        <result column="validation_code" property="validationCode" />
-        <result column="envelope_signature" property="envelopeSignature" />
-        <result column="payload_extension" property="payloadExtension" />
-        <result column="creator_id_bytes" property="creatorIdBytes" />
-        <result column="creator_nonce" property="creatorNonce" />
-        <result column="chaincode_proposal_input" property="chaincodeProposalInput" />
-        <result column="tx_response" property="txResponse" />
-        <result column="payload_proposal_hash" property="payloadProposalHash" />
-        <result column="endorser_id_bytes" property="endorserIdBytes" />
-        <result column="endorser_signature" property="endorserSignature" />
-        <result column="network_name" property="networkName" />
+        <id column="id" property="id"/>
+        <result column="block_id" property="blockId"/>
+        <result column="tx_hash" property="txHash"/>
+        <result column="create_time" property="createTime"/>
+        <result column="chaincode_name" property="chaincodeName"/>
+        <result column="status" property="status"/>
+        <result column="creator_msp_id" property="creatorMspId"/>
+        <result column="endorser_msp_id" property="endorserMspId"/>
+        <result column="chaincode_id" property="chaincodeId"/>
+        <result column="type" property="type"/>
+        <result column="read_set" property="readSet"/>
+        <result column="write_set" property="writeSet"/>
+        <result column="channel_genesis_hash" property="channelGenesisHash"/>
+        <result column="validation_code" property="validationCode"/>
+        <result column="envelope_signature" property="envelopeSignature"/>
+        <result column="payload_extension" property="payloadExtension"/>
+        <result column="creator_id_bytes" property="creatorIdBytes"/>
+        <result column="creator_nonce" property="creatorNonce"/>
+        <result column="chaincode_proposal_input" property="chaincodeProposalInput"/>
+        <result column="tx_response" property="txResponse"/>
+        <result column="payload_proposal_hash" property="payloadProposalHash"/>
+        <result column="endorser_id_bytes" property="endorserIdBytes"/>
+        <result column="endorser_signature" property="endorserSignature"/>
+        <result column="network_name" property="networkName"/>
     </resultMap>
 
+    <resultMap id="PointResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.dto.PointCount">
+        <result column="datetime" property="datetime"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+    <select id="listByMinute" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD HH24:MI') AS DATETIME,
+               count(*) AS COUNT
+        FROM transaction
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
+    <select id="listByHour" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD HH24') AS DATETIME,
+               count(*) AS COUNT
+        FROM transaction
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
+    <select id="listByDay" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD') AS DATETIME,
+               count(*) AS COUNT
+        FROM transaction
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
 </mapper>

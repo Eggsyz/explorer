@@ -11,6 +11,7 @@ import top.itkezhan.blockchain.explorer.common.api.CommonPage;
 import top.itkezhan.blockchain.explorer.common.api.CommonResult;
 import top.itkezhan.blockchain.explorer.modules.explorer.dto.PointCount;
 import top.itkezhan.blockchain.explorer.modules.explorer.model.Block;
+import top.itkezhan.blockchain.explorer.modules.explorer.model.Channel;
 import top.itkezhan.blockchain.explorer.modules.explorer.service.BlockService;
 
 import java.util.Date;
@@ -40,6 +41,14 @@ public class BlockController {
                                                 @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         Page<Block> blockList = blockService.list(networkName, channelName, pageNum, pageSize);
         return CommonResult.success(CommonPage.restPage(blockList));
+    }
+
+    @ApiOperation("根据id查询区块详情")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<Block> getBlockById(@PathVariable Integer id) {
+        Block block = blockService.getById(id);
+        return CommonResult.success(block);
     }
 
     @ApiOperation("根据区块高度查询区块详情")
