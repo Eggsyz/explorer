@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("block")
-@ApiModel(value="Block对象", description="")
+@ApiModel(value="Block", description="区块数据结构")
 public class Block implements Serializable {
 
     private static final long serialVersionUID=1L;

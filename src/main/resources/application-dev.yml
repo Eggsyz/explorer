@@ -5,6 +5,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 123456
+    password: ENC(cmcbZk6AoNFsm0TVFPnncA==)
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 swagger:
   enable: true
+jasypt:
+  encryptor:
+    #加密秘钥
+    password: EbfYkitulv73I2p0mXI50JMXoaxZTKJ7

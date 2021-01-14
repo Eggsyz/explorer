@@ -4,16 +4,60 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.model.Block">
-        <id column="id" property="id" />
-        <result column="block_num" property="blockNum" />
-        <result column="data_hash" property="dataHash" />
-        <result column="previous_block_hash" property="previousBlockHash" />
-        <result column="tx_count" property="txCount" />
-        <result column="create_time" property="createTime" />
-        <result column="current_block_hash" property="currentBlockHash" />
-        <result column="channel_genesis_hash" property="channelGenesisHash" />
-        <result column="block_size" property="blockSize" />
-        <result column="network_name" property="networkName" />
+        <id column="id" property="id"/>
+        <result column="block_num" property="blockNum"/>
+        <result column="data_hash" property="dataHash"/>
+        <result column="previous_block_hash" property="previousBlockHash"/>
+        <result column="tx_count" property="txCount"/>
+        <result column="create_time" property="createTime"/>
+        <result column="current_block_hash" property="currentBlockHash"/>
+        <result column="channel_genesis_hash" property="channelGenesisHash"/>
+        <result column="block_size" property="blockSize"/>
+        <result column="network_name" property="networkName"/>
     </resultMap>
 
+    <resultMap id="PointResultMap" type="top.itkezhan.blockchain.explorer.modules.explorer.dto.PointCount">
+        <result column="datetime" property="datetime"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+    <select id="listByMinute" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD HH24:MI') AS DATETIME,
+               count(*) AS COUNT
+        FROM block
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
+    <select id="listByHour" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD HH24') AS DATETIME,
+               count(*) AS COUNT
+        FROM block
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
+    <select id="listByDay" resultMap="PointResultMap">
+        SELECT to_char(create_time, 'YYYY-MM-DD') AS DATETIME,
+               count(*) AS COUNT
+        FROM block
+        WHERE network_name=#{networkName}
+          AND channel_name=#{channelName}
+          AND create_time BETWEEN #{startTime}
+          AND #{endTime}
+        GROUP BY
+            DATETIME
+        ORDER BY
+            DATETIME;
+    </select>
 </mapper>

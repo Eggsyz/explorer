@@ -173,7 +173,7 @@ DROP INDEX IF EXISTS blocks_blocknum_idx;
 CREATE INDEX ON Block
 (block_num,network_name);
 
-DROP INDEX IF EXISTS blocks_channel_genesis_hash_idx;
+DROP INDEX IF EXISTS blocks_channel_name_idx;
 CREATE INDEX ON Block
 (channel_name,network_name);
 
@@ -185,7 +185,7 @@ DROP INDEX IF EXISTS transaction_txhash_idx;
 CREATE INDEX ON Transaction
 (tx_hash,network_name);
 
-DROP INDEX IF EXISTS transaction_channel_genesis_hash_idx;
+DROP INDEX IF EXISTS transaction_channel_name_idx;
 CREATE INDEX ON Transaction
 (channel_name,network_name);
 
@@ -197,10 +197,6 @@ DROP INDEX IF EXISTS transaction_blockid_idx;
 CREATE INDEX ON Transaction
 (block_id);
 
-DROP INDEX IF EXISTS channel_channel_genesis_hash_idx;
+DROP INDEX IF EXISTS channel_name_idx;
 CREATE INDEX ON channel
 (name,network_name);
-
-DROP INDEX IF EXISTS channel_channel_hash_idx;
-CREATE INDEX ON channel
-(channel_hash,network_name);
